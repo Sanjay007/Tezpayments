@@ -234,26 +234,42 @@ a:hover {
 }
 
 .services-title {
-  font: 800 18px 'Open Sans', sans-serif !important;
+  font: 800 16px 'Open Sans', sans-serif !important;
   color: #000 !important;
-}
-
-.sevices-row {
-  padding-top: 50px;
 }
 
 .services-wrapper ul {
   margin: 0 !important;
   padding: 0 !important;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: start;
+}
+
+.services-wrapper ul li {
+  margin-right: 30px;
+  margin-bottom: 30px;
 }
 
 .services-wrapper ul li img {
   max-width: 80px;
+  height: 80px;
+  -o-object-fit: contain;
+     object-fit: contain;
   margin-bottom: 15px !important;
 }
 
 .services-wrapper ul li:not(:last-child) {
   margin-right: 30px;
+}
+
+.bbps-services ul li {
+  max-width: 15%;
 }
 
 .profolio-wrapper .profolio-cards {

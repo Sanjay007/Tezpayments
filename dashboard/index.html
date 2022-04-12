@@ -356,61 +356,18 @@
             >
               <div class="home_wrapper">
                 <!-- Banking Services Start -->
-                <div class="sevices-row banking-services">
+                <div class="sevices-row banking-services pt-5">
                   <h2 class="title-dashboard">Banking Services</h2>
                   <div class="services-wrapper">
-                    <ul class="d-flex justify-start">
-                      <!-- Money Transfer -->
-                      <li class="text-center">
-                        <a href="#">
-                          <div class="services-icons">
-                            <img
-                              src="../assets/icons/money-transform.png"
-                              alt=""
-                            />
-                          </div>
-                          <h4 class="services-title">Money Transfer</h4>
-                        </a>
-                      </li>
-                      <!-- Money Transfer -->
-                      <li class="text-center">
-                        <a href="#">
-                          <div class="services-icons">
-                            <img src="../assets/icons/adhar-thumb.png" alt="" />
-                          </div>
-                          <h4 class="services-title">AEPS & Aadhaar Pay</h4>
-                        </a>
-                      </li>
-                    </ul>
+                    <!-- Dynamic Data Fetching -->
+                    <ul class="d-flex justify-start" id="services-wrapper"></ul>
                   </div>
                 </div>
                 <!-- Recharge & BBPS Services Start -->
-                <div class="sevices-row banking-services">
+                <div class="sevices-row banking-services bbps-services">
                   <h2 class="title-dashboard">Recharge & BBPS Services</h2>
                   <div class="services-wrapper">
-                    <ul class="d-flex justify-start">
-                      <!-- Money Transfer -->
-                      <li class="text-center">
-                        <a href="#">
-                          <div class="services-icons">
-                            <img
-                              src="../assets/icons/money-transform.png"
-                              alt=""
-                            />
-                          </div>
-                          <h4 class="services-title">Mobile Recharge</h4>
-                        </a>
-                      </li>
-                      <!-- Money Transfer -->
-                      <li class="text-center">
-                        <a href="#">
-                          <div class="services-icons">
-                            <img src="../assets/icons/adhar-thumb.png" alt="" />
-                          </div>
-                          <h4 class="services-title">DTH Recharge</h4>
-                        </a>
-                      </li>
-                    </ul>
+                    <ul id="rechangeandbbps"></ul>
                   </div>
                 </div>
               </div>
@@ -454,5 +411,55 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
     <script src="../assets/js/material-dashboard.min.js?v=3.0.2"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.min.js"
+      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+      crossorigin="anonymous"
+    ></script>
+    <script src="../assets/js/services.js"></script>
+    <script>
+      $(document).ready(function () {
+        $.each(banking, function (key, val) {
+          document.querySelector('#services-wrapper').innerHTML += `
+          <ul class="d-flex justify-start">
+                      
+          <li class="text-center">
+                        <a href="#">
+                          <div class="services-icons">
+                            <img
+                              src="${val.s_img}"
+                              alt=""
+                            />
+                          </div>
+                          <h4 class="services-title">${val.name}</h4>
+                        </a>
+                      </li>
+                      <!-- Money Transfer -->
+                   
+                    </ul>
+          `;
+        });
+        $.each(rechargeandbpps, function (key, val) {
+          document.querySelector('#rechangeandbbps').innerHTML += `
+          
+                      
+          <li class="text-center">
+                        <a href="#">
+                          <div class="services-icons">
+                            <img
+                              src="${val.s_img}"
+                              alt=""
+                            />
+                          </div>
+                          <h4 class="services-title">${val.name}</h4>
+                        </a>
+                      </li>
+                      <!-- Money Transfer -->
+                   
+                 
+          `;
+        });
+      });
+    </script>
   </body>
 </html>
