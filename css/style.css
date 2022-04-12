@@ -37,6 +37,10 @@ a:hover {
   }
 }
 
+.navbar-vertical.navbar-expand-xs .navbar-nav .nav-link img {
+  max-width: 25px;
+}
+
 #sidenav-main.hideshow-sidebar {
   width: 0 !important;
 }
