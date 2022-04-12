@@ -233,4 +233,18 @@
 .domestic .titile {
   padding: 0 20px;
 }
+
+@media screen and (max-width: 768px) {
+  .profolio-wrapper .profolio-cards .total-count h3 {
+    font: 800 20px 'Open Sans', sans-serif !important;
+    color: #000 !important;
+  }
+  .tabchanging-wrapper #tab-contents .tab-contents .content-tab h3 {
+    font: 800 12px 'Open Sans', sans-serif !important;
+  }
+  .tabchanging-wrapper .total-price {
+    font: 800 14px 'Open Sans', sans-serif !important;
+    color: #2162f5;
+  }
+}
 /*# sourceMappingURL=portfolio.css.map */
