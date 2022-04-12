@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <title>Dashboard</title>
+    <!--     Fonts and icons     -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;800&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Nucleo Icons -->
+    <link href="../assets/css/nucleo-icons.css" rel="stylesheet" />
+    <link href="../assets/css/nucleo-svg.css" rel="stylesheet" />
+    <!-- Font Awesome Icons -->
+    <script
+      src="https://kit.fontawesome.com/42d5adcbca.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="../assets/css/style.min.css" />
+    <!-- Material Icons -->
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons+Round"
+      rel="stylesheet"
+    />
+    <!-- CSS Files -->
+    <link
+      id="pagestyle"
+      href="../assets/css/material-dashboard.css"
+      rel="stylesheet"
+    />
+    <style>
+      .sidenav .collapse .nav-item .nav-link.active {
+        color: hsl(0, 0%, 0%) !important;
+      }
+      .sidenav .collapse .nav-item .nav-link.active i {
+        color: #f55621 !important;
+      }
+      .navbar-vertical.navbar-expand-xs {
+        max-width: 16.625rem !important;
+      }
+    </style>
+  </head>
+
+  <body
+    class="g-sidenav-show"
+    style="background: url('../images/bg-dashboard.jpg')"
+  >
+    <aside
+      class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3 bg-white"
+      id="sidenav-main"
+    >
+      <div class="sidenav-header">
+        <i
+          class="fas fa-times p-3 cursor-pointer text-dark opacity-5 position-absolute end-0 top-0 d-none d-xl-none"
+          aria-hidden="true"
+          id="iconSidenav"
+        ></i>
+        <a class="navbar-brand m-0" href="#">
+          <span class="ms-1 font-weight-bold text-center">
+            <img src="../images/logo.png" alt="" />
+          </span>
+        </a>
+      </div>
+      <hr class="horizontal light mt-0 mb-2" />
+      <div
+        class="collapse navbar-collapse w-auto max-height-vh-100"
+        id="sidenav-collapse-main"
+      >
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link text-white" href="index.html">
+              <div
+                class="text-dark text-center me-2 d-flex align-items-center justify-content-center"
+              >
+                <i class="material-icons opacity-10">home</i>
+              </div>
+              <span class="nav-link-text ms-1">Home</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white active" href="profile.html">
+              <div
+                class="text-dark text-center me-2 d-flex align-items-center justify-content-center"
+              >
+                <i class="material-icons opacity-10">person</i>
+              </div>
+              <span class="nav-link-text ms-1">Profile</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-dark" href="./pages/tables.html">
+              <div
+                class="text-dark text-center me-2 d-flex align-items-center justify-content-center"
+              >
+                <i class="material-icons opacity-10">discount</i>
+              </div>
+              <span class="nav-link-text ms-1">Discount Management</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-dark" href="./pages/tables.html">
+              <div
+                class="text-dark text-center me-2 d-flex align-items-center justify-content-center"
+              >
+                <i class="material-icons opacity-10">wallet</i>
+              </div>
+              <span class="nav-link-text ms-1">Wallet Management</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-dark" href="./pages/tables.html">
+              <div
+                class="text-dark text-center me-2 d-flex align-items-center justify-content-center"
+              >
+                <i class="material-icons opacity-10">wallet</i>
+              </div>
+              <span class="nav-link-text ms-1">Disput Management</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-dark" href="./pages/tables.html">
+              <div
+                class="text-dark text-center me-2 d-flex align-items-center justify-content-center"
+              >
+                <i class="material-icons opacity-10">wallet</i>
+              </div>
+              <span class="nav-link-text ms-1">View Bank Details</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-dark" href="./pages/tables.html">
+              <div
+                class="text-dark text-center me-2 d-flex align-items-center justify-content-center"
+              >
+                <i class="material-icons opacity-10">wallet</i>
+              </div>
+              <span class="nav-link-text ms-1">Reports</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-dark" href="./pages/tables.html">
+              <div
+                class="text-dark text-center me-2 d-flex align-items-center justify-content-center"
+              >
+                <i class="material-icons opacity-10">wallet</i>
+              </div>
+              <span class="nav-link-text ms-1">Latest Transactions</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </aside>
+    <main
+      class="main-content position-relative max-height-vh-100 h-100 border-radius-lg"
+    >
+      <!-- Navbar -->
+      <nav
+        class="navbar navbar-main navbar-expand-lg px-0 mx-4 mt-3 shadow-none border-radius-xl bg-white header-bashboard"
+        id="navbarBlur"
+        navbar-scroll="true"
+      >
+        <div class="container-fluid py-1 px-3 d-flex justify-content-between">
+          <!-- Main Menu Right Side Content -->
+          <nav class="d-flex justify-content-start align-items-center">
+            <ul class="d-flex px-0 py-0 m-0">
+              <li class="nav-item d-flex align-items-center">
+                <a
+                  href="javascript:;"
+                  class="nav-link text-body p-0"
+                  id="iconNavbarSidenav"
+                >
+                  <div class="sidenav-toggler-inner">
+                    <i class="sidenav-toggler-line"></i>
+                    <i class="sidenav-toggler-line"></i>
+                    <i class="sidenav-toggler-line"></i>
+                  </div>
+                </a>
+              </li>
+              <li>
+                <h6 class="font-weight-bolder mb-0 ps-3 title-header">
+                  Dashboard
+                </h6>
+              </li>
+              <li></li>
+            </ul>
+            <div class="ps-3 d-flex align-items-center search-filed">
+              <div class="input-group border-radius-xl position-relative">
+                <i
+                  class="material-icons opacity-10 search-icon position-absolute"
+                  >search</i
+                >
+                <input type="text" class="form-control" placeholder="Search" />
+              </div>
+            </div>
+          </nav>
+          <!-- Header Right Side Content -->
+          <div
+            class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4 d-flex align-items-center"
+            id="navbar"
+          >
+            <ul class="navbar-nav ml-auto" style="margin-left: auto">
+              <li
+                class="nav-item dropdown pe-2 d-flex align-items-center notification-icon"
+              >
+                <a
+                  href="javascript:;"
+                  class="nav-link text-body p-0"
+                  id="dropdownMenuButton"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  <i class="fa fa-bell cursor-pointer"></i>
+                </a>
+              </li>
+              <!-- User Profile -->
+              <li
+                class="nav-item pe-2 d-flex align-items-center ps-1 user-profile"
+              >
+                <div
+                  class="flex_wrapper d-flex justify-content-start align-items-center"
+                >
+                  <div class="user-avtar">
+                    <img src="../images/icons/avtar.png" alt="" />
+                  </div>
+                  <div class="user-details">
+                    <h2>Nilanjan Dutta</h2>
+                    <h5>ndnilanjandutta1@gmail.com</h5>
+                  </div>
+                </div>
+              </li>
+              <!-- Wallet Balence -->
+              <li
+                class="nav-item dropdown pe-2 d-flex align-items-center ps-1 wallet-balence"
+              >
+                <a
+                  href="javascript:;"
+                  class="nav-link text-body p-0"
+                  id="dropdownMenuButton"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  <img
+                    src="../images/wallet-balence.png"
+                    class="main-walletimg"
+                    alt=""
+                  />
+                </a>
+                <ul
+                  class="dropdown-menu dropdown-menu-end px-2 py-3 me-sm-n4 wallet-balence-dropdown"
+                  aria-labelledby="dropdownMenuButton"
+                >
+                  <li class="mb-2">
+                    <a
+                      class="dropdown-item border-radius-md"
+                      href="javascript:;"
+                    >
+                      <div
+                        class="flex_wrapper d-flex justify-content-between align-items-center"
+                      >
+                        <div class="wallet-options">
+                          <div class="inner-flex d-flex align-items-center">
+                            <div class="wallet-icon">
+                              <img
+                                src="../images/icons/main-wallet.png"
+                                alt=""
+                              />
+                            </div>
+                            <div class="wallet-name">
+                              <span>main</span>
+                              <h4>Wallet</h4>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="balence-show"><h3>Rs.14588.00</h3></div>
+                      </div>
+                    </a>
+                  </li>
+                  <!-- AEPS Wallet -->
+                  <li class="mb-2">
+                    <a
+                      class="dropdown-item border-radius-md"
+                      href="javascript:;"
+                    >
+                      <div
+                        class="flex_wrapper d-flex justify-content-between align-items-center"
+                      >
+                        <div class="wallet-options">
+                          <div class="inner-flex d-flex align-items-center">
+                            <div class="wallet-icon">
+                              <img
+                                src="../images/icons/main-wallet.png"
+                                alt=""
+                              />
+                            </div>
+                            <div class="wallet-name">
+                              <span>AEPS</span>
+                              <h4>Wallet</h4>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="balence-show"><h3>Rs.14588.00</h3></div>
+                      </div>
+                    </a>
+                  </li>
+                  <!-- Your Profile -->
+                  <li class="mb-2">
+                    <a
+                      class="dropdown-item border-radius-md"
+                      href="javascript:;"
+                    >
+                      <div
+                        class="flex_wrapper d-flex justify-content-between align-items-center"
+                      >
+                        <div class="wallet-options">
+                          <div class="inner-flex d-flex align-items-center">
+                            <div class="wallet-icon">
+                              <img
+                                src="../images/icons/profile-icon.png"
+                                alt=""
+                              />
+                            </div>
+                            <div class="wallet-name">
+                              <span>Your</span>
+                              <h4>Profile</h4>
+                            </div>
+                          </div>
+                        </div>
+                        <a href="#" class="sign-out">
+                          <img src="../images/icons/sign-out.png" alt="" /> Sign
+                          Out</a
+                        >
+                      </div>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <!-- End Navbar -->
+      <!-- Main Content Pannel Start -->
+      <div class="container-fluid py-4">
+        <div class="row">
+          <div class="col-12">
+            <div
+              class="pannel-content min-height-vh-100 h-100 border-radius-lg"
+              style="
+                border-bottom-left-radius: 0;
+                border-bottom-right-radius: 0;
+                padding-left: 0;
+                padding-right: 0;
+              "
+            >
+              <div class="profolio-wrapper">
+                <div class="row no-gutters">
+                  <div class="col-md-4 mb-4">
+                    <div
+                      class="profolio-cards bg-white border-radius-lg d-flex justify-content-between align-items-start"
+                    >
+                      <div class="total-count">
+                        <h6>Total Team Main Balance</h6>
+                        <h3>Rs. 14588.00</h3>
+                      </div>
+                      <div
+                        class="icon-circle d-flex justify-content-center align-items-center"
+                      >
+                        <i class="material-icons opacity-10">currency_rupee</i>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-4 mb-4">
+                    <div
+                      class="profolio-cards bg-white border-radius-lg d-flex justify-content-between align-items-start"
+                    >
+                      <div class="total-count">
+                        <h6>Main API Balance</h6>
+                        <h3>Rs. 14588.00</h3>
+                      </div>
+                      <div
+                        class="icon-circle d-flex justify-content-center align-items-center"
+                        style="background: #ffc805"
+                      >
+                        <i class="material-icons opacity-10">currency_rupee</i>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-4 mb-4">
+                    <div
+                      class="profolio-cards bg-white border-radius-lg d-flex justify-content-between align-items-start"
+                    >
+                      <div class="total-count">
+                        <h6>Total Team Main Balance</h6>
+                        <h3>Rs. 14588.00</h3>
+                      </div>
+                      <div
+                        class="icon-circle d-flex justify-content-center align-items-center"
+                      >
+                        <i class="material-icons opacity-10">currency_rupee</i>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-4 mb-4">
+                    <div
+                      class="profolio-cards bg-white border-radius-lg d-flex justify-content-between align-items-start"
+                    >
+                      <div class="total-count">
+                        <h3>BC ID</h3>
+                        <h3>1473</h3>
+                      </div>
+                      <div
+                        class="icon-circle d-flex justify-content-center align-items-center"
+                      >
+                        <i class="material-icons opacity-10">currency_rupee</i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- All Transaction  -->
+              <div class="tabchanging-wrapper px-3">
+                <div class="row">
+                  <div class="col-12 border-radius-lg bg-white">
+                    <div class="inner-wrapper">
+                      <h4 class="titile">All Transactions</h4>
+
+                      <div class="row">
+                        <div class="col-md-2 align-items-end d-flex">
+                          <h4 class="total-price">Rs. 14500.00</h4>
+                        </div>
+                        <div class="col-md-10 no-gutters">
+                          <div class="tab-change-container">
+                            <nav id="tabs" class="text-center">
+                              <li class="active">
+                                <a href="#tab1"
+                                  >Pending Recharge Transactions</a
+                                >
+                              </li>
+                              <li>
+                                <a href="#tab2"
+                                  >Successful Recharge Transactions</a
+                                >
+                              </li>
+                              <li>
+                                <a href="#tab3">Failed Recharge Transactions</a>
+                              </li>
+                            </nav>
+                            <section id="tab-contents">
+                              <div id="tab1" class="tab-contents active">
+                                <div class="row text-center">
+                                  <div class="col-md-4">
+                                    <div class="content-tab">
+                                      <h3>Type of Transactions</h3>
+                                      <span>UPI</span>
+                                    </div>
+                                  </div>
+                                  <div class="col-md-4">
+                                    <div class="content-tab">
+                                      <h3>Date</h3>
+                                      <span>14/08/2021</span>
+                                    </div>
+                                  </div>
+                                  <div class="col-md-4">
+                                    <div class="content-tab">
+                                      <h3>Status</h3>
+                                      <span class="pending"> Pending</span>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div id="tab2" class="tab-contents">
+                                <p>These are the contents of tab 2.</p>
+                              </div>
+                              <div id="tab3" class="tab-contents">
+                                <p>These are the contents of tab 3.</p>
+                              </div>
+                            </section>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row mt-4">
+                <div class="col-md-6">
+                  <!-- All Domestic Money Transfer -->
+                  <div class="domestic tabchanging-wrapper px-3">
+                    <div class="row">
+                      <div
+                        class="col-12 border-radius-lg bg-white"
+                        style="padding-left: 0; padding-right: 0"
+                      >
+                        <div class="inner-wrapper">
+                          <h4 class="titile">All Domestic Money Transfer</h4>
+                          <div class="tab-change-container mt-3">
+                            <nav id="tabs-second" class="text-center">
+                              <li class="active-demostic">
+                                <a href="#tab4">Successful Transactions</a>
+                              </li>
+                              <li>
+                                <a href="#tab5">Unsuccessful Transactions</a>
+                              </li>
+                            </nav>
+                            <section id="tab-contents-second">
+                              <div
+                                id="tab4"
+                                class="tab-contents-second active-demostic"
+                              >
+                                <div
+                                  class="d-flex justify-content-between align-items-end"
+                                >
+                                  <div class="d-flex algin-items-end">
+                                    <h4 class="total-price">Rs. 14500.00</h4>
+                                  </div>
+
+                                  <div class="content-tab text-center">
+                                    <h3>Date</h3>
+                                    <span>14/08/2021</span>
+                                  </div>
+                                </div>
+                              </div>
+                              <div id="tab5" class="tab-contents-second">
+                                <p>These are the contents of tab 2.</p>
+                              </div>
+                            </section>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <!-- Total AEPS Transfer -->
+                  <div class="total-aeps tabchanging-wrapper px-3">
+                    <div class="row">
+                      <div
+                        class="col-12 border-radius-lg bg-white"
+                        style="padding-left: 0; padding-right: 0"
+                      >
+                        <div class="inner-wrapper">
+                          <h4 class="titile">Total AEPS Transfer</h4>
+                          <div class="tab-change-container mt-3">
+                            <nav id="tabs-third" class="text-center">
+                              <li class="active-third">
+                                <a href="#tab6">Successful Transactions</a>
+                              </li>
+                              <li>
+                                <a href="#tab7">Unsuccessful Transactions</a>
+                              </li>
+                            </nav>
+                            <section id="tab-contents-third">
+                              <div
+                                id="tab6"
+                                class="tab-contents-third active-third"
+                              >
+                                <div
+                                  class="d-flex justify-content-between align-items-end"
+                                >
+                                  <div class="d-flex algin-items-end">
+                                    <h4 class="total-price">Rs. 14500.00</h4>
+                                  </div>
+
+                                  <div class="content-tab text-center">
+                                    <h3>Date</h3>
+                                    <span>14/08/2021</span>
+                                  </div>
+                                </div>
+                              </div>
+                              <div id="tab7" class="tab-contents-third">
+                                <p>These are the contents of tab 2.</p>
+                              </div>
+                            </section>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Main Content Pannel Start -->
+      </div>
+    </main>
+
+    <!--   Core JS Files   -->
+
+    <script src="../assets/js/core/bootstrap.min.js"></script>
+    <script src="../assets/js/plugins/perfect-scrollbar.min.js"></script>
+    <script src="../assets/js/plugins/smooth-scrollbar.min.js"></script>
+
+    <script>
+      function toggleSidebar(ref) {
+        document
+          .getElementById('iconNavbarSidenav')
+          .classList.toggle('hideshow-sidebar');
+      }
+    </script>
+
+    <script>
+      var win = navigator.platform.indexOf('Win') > -1;
+      if (win && document.querySelector('#sidenav-scrollbar')) {
+        var options = {
+          damping: '0.5',
+        };
+        Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
+      }
+    </script>
+    <!-- Github buttons -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
+    <script src="../assets/js/material-dashboard.min.js?v=3.0.2"></script>
+    <script>
+      // Define variables
+      var tabLabels = document.querySelectorAll('#tabs li');
+      var tabLabelssecond = document.querySelectorAll('#tabs-second li');
+      var tabLabelsThird = document.querySelectorAll('#tabs-third li');
+
+      var tabPanes = document.getElementsByClassName('tab-contents');
+      var tabPanes_second = document.getElementsByClassName(
+        'tab-contents-second'
+      );
+      var tabPanes_third =
+        document.getElementsByClassName('tab-contents-third');
+
+      function activateTab(e) {
+        e.preventDefault();
+
+        // Deactivate all tabs
+        tabLabels.forEach(function (label, index) {
+          label.classList.remove('active');
+        });
+        [].forEach.call(tabPanes, function (pane, index) {
+          pane.classList.remove('active');
+        });
+
+        // Activate current tab
+        e.target.parentNode.classList.add('active');
+        var clickedTab = e.target.getAttribute('href');
+        document.querySelector(clickedTab).classList.add('active');
+      }
+
+      function activateTabSecond(e) {
+        e.preventDefault();
+
+        // Deactivate all tabs
+        tabLabelssecond.forEach(function (labelsecond, index) {
+          labelsecond.classList.remove('active-demostic');
+        });
+        [].forEach.call(tabPanes_second, function (pane, index) {
+          pane.classList.remove('active-demostic');
+        });
+
+        // Activate current tab
+        e.target.parentNode.classList.add('active-demostic');
+        var clickedTab = e.target.getAttribute('href');
+        document.querySelector(clickedTab).classList.add('active-demostic');
+      }
+
+      function activateTabThird(e) {
+        e.preventDefault();
+
+        // Deactivate all tabs
+        tabLabelsThird.forEach(function (labelthird, index) {
+          labelthird.classList.remove('active-third');
+        });
+        [].forEach.call(tabPanes_third, function (pane, index) {
+          pane.classList.remove('active-third');
+        });
+
+        // Activate current tab
+        e.target.parentNode.classList.add('active-third');
+        var clickedTab = e.target.getAttribute('href');
+        document.querySelector(clickedTab).classList.add('active-third');
+      }
+
+      // Apply event listeners
+      tabLabels.forEach(function (label, index) {
+        label.addEventListener('click', activateTab);
+      });
+      // Apply event listeners
+      tabLabelssecond.forEach(function (labelsecond, index) {
+        labelsecond.addEventListener('click', activateTabSecond);
+      });
+      // Apply event listeners
+      tabLabelsThird.forEach(function (labelthird, index) {
+        labelthird.addEventListener('click', activateTabThird);
+      });
+    </script>
+  </body>
+</html>
