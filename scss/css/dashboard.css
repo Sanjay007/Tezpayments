@@ -241,4 +241,19 @@
 .bbps-services ul li {
   max-width: 15%;
 }
+
+@media screen and (max-width: 560px) {
+  .pannel-content {
+    padding: 0px 20px 20px 20px;
+  }
+  .services-wrapper ul li img {
+    max-width: 50px;
+  }
+  .services-title {
+    font: 800 12px 'Open Sans', sans-serif !important;
+  }
+  .footer p {
+    font-size: 12px;
+  }
+}
 /*# sourceMappingURL=dashboard.css.map */

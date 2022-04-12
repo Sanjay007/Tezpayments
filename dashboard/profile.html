@@ -58,6 +58,7 @@
           class="fas fa-times p-3 cursor-pointer text-dark opacity-5 position-absolute end-0 top-0 d-none d-xl-none"
           aria-hidden="true"
           id="iconSidenav"
+          style="z-index: 33"
         ></i>
         <a class="navbar-brand m-0" href="#">
           <span class="ms-1 font-weight-bold text-center">
@@ -616,6 +617,13 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
     <script src="../assets/js/material-dashboard.min.js?v=3.0.2"></script>
+    <script>
+      $(document).ready(function () {
+        $('#iconSidenav').on('click', function () {
+          alert('asfsaf');
+        });
+      });
+    </script>
     <script>
       // Define variables
       var tabLabels = document.querySelectorAll('#tabs li');

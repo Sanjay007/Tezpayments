@@ -55,11 +55,13 @@
     >
       <div class="sidenav-header">
         <i
-          class="fas fa-times p-3 cursor-pointer text-white opacity-5 position-absolute end-0 top-0 d-none d-xl-none"
+          class="fas fa-times p-3 cursor-pointer text-dark opacity-5 position-absolute end-0 top-0 d-none d-xl-none"
           aria-hidden="true"
           id="iconSidenav"
+          style="z-index: 33"
         ></i>
-        <a class="navbar-brand m-0" href="/" target="_blank">
+
+        <a class="navbar-brand m-0" href="#" target="_blank">
           <span class="ms-1 font-weight-bold text-center">
             <img src="../images/logo.png" alt="" />
           </span>
@@ -385,7 +387,7 @@
           "
         >
           <div class="container-fluid">
-            Copyright © 2021 Tezpayments. All rights reserved.
+            <p>Copyright © 2021 Tezpayments. All rights reserved.</p>
           </div>
         </footer>
         <!-- Footer End -->
@@ -417,6 +419,11 @@
       crossorigin="anonymous"
     ></script>
     <script src="../assets/js/services.js"></script>
+    <script>
+      $(document).ready(function () {
+        $('#iconSidenav').on('click', function () {});
+      });
+    </script>
     <script>
       $(document).ready(function () {
         $.each(banking, function (key, val) {
