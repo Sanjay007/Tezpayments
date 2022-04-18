@@ -8,6 +8,10 @@ var services = [
       s_img: '../images/icons/adhar-thumb.png',
       name: 'AEPS & Aadhaar  Pay',
     },
+    {
+      s_img: '../images/icons/mobile-recharge.png',
+      name: 'Vendor Payment',
+    },
   ]),
   (rechargeandbpps = [
     {

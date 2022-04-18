@@ -24,6 +24,10 @@
   position: sticky;
 }
 
+.hideshowsidebar {
+  background: red !important;
+}
+
 .navbar-brand img {
   max-width: 140px;
 }
@@ -231,8 +235,8 @@
 }
 
 .services-wrapper ul li img {
-  max-width: 80px;
-  height: 80px;
+  max-width: 65px;
+  height: 65px;
   -o-object-fit: contain;
      object-fit: contain;
   margin-bottom: 15px !important;

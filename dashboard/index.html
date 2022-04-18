@@ -421,9 +421,13 @@
     ></script>
     <script src="../assets/js/services.js"></script>
     <script>
-      $(document).ready(function () {
-        $('#iconSidenav').on('click', function () {});
-      });
+      var sidenavMain = document.querySelector("#sidenav-main");
+      var iconSidenav = document.querySelector("#iconNavbarSidenav");
+      iconSidenav.addEventListener('click', function(){
+        sidenavMain.classList.toggle("hideshowsidebar")
+      })
+    </script>
+    
     </script>
     <script>
       $(document).ready(function () {

@@ -24,20 +24,23 @@
   </head>
   <body>
     <div class="login-page">
-      <div class="black-header-wrapper">
+      <div class="black-header-wrapper text-white">
         <div
-          class="inner-wrapper h-100 d-flex justify-content-between align-items-center"
+          class="inner-wrapper m-auto h-100 d-flex justify-content-between align-items-center"
         >
           <!-- Header Contact Details Start -->
           <div class="contact-details">
-            <ul class="d-flex align-center">
+            <ul class="d-flex align-center mb-0">
               <li>
-                <a href="mailto:customercare@tezpayments.com">
+                <a
+                  href="mailto:customercare@tezpayments.com"
+                  class="text-white"
+                >
                   <i class="fa fa-envelope"></i>customercare@tezpayments.com</a
                 >
               </li>
               <li>
-                <a href="tel:+91-9831691251"
+                <a href="tel:+91-9831691251" class="text-white"
                   ><i class="fa fa-phone" style="transform: rotate(90deg)"></i
                   >+91-9831691251</a
                 >
@@ -46,7 +49,7 @@
           </div>
           <!-- Header Media Icons Start -->
           <div class="media-icons">
-            <ul class="d-flex justify-content-end align-items-center">
+            <ul class="mb-0 d-flex justify-content-end align-items-center">
               <li>
                 <a
                   href="https://www.facebook.com/Tezpayments/?ref=pages_you_manage"
@@ -95,7 +98,7 @@
       <div class="login_wrapper d-flex justify-content-center align-center">
         <!-- Login Right Image Start -->
         <div class="full-img w-50">
-          <img src="images/login-image.jpg" alt="" />
+          <img src="images/login-image.jpg" class="w-100 h-100" alt="" />
         </div>
         <!-- Login Details Start -->
         <div
@@ -108,12 +111,12 @@
           "
         >
           <div
-            class="login-wrapper w-100 h-100 d-flex justify-content-between align-items-cente"
+            class="login-wrapper w-50 h-100 m-auto d-flex justify-content-between align-items-cente"
           >
             <!-- Login NavLinks Start -->
             <div class="navlinks">
               <ul
-                class="d-flex justify-content-end text-uppercase align-items-center"
+                class="mb-0 d-flex justify-content-end text-uppercase align-items-center"
               >
                 <li><a href="#">Home</a></li>
                 <li><a href="#">Featured Video</a></li>
@@ -132,30 +135,34 @@
                   </div>
                   <input
                     type="text"
-                    class="form-control"
+                    class="form-control w-100 h-100 border-0"
                     placeholder="user id"
                     aria-label="user id"
                     aria-describedby="addon-wrapping"
+                    required
                   />
                 </div>
                 <!-- Password Input Start -->
-                <div class="input-group flex-nowrap position-relative">
+                <div class="input-group flex-nowrap position-relative mt-3">
                   <div class="over-ico position-absolute">
                     <img src="images/passoword-key.png" alt="" />
                   </div>
                   <input
                     type="password"
-                    class="form-control"
+                    class="form-control w-100 h-100 border-0"
                     placeholder="password"
                     aria-label="password"
                     aria-describedby="addon-wrapping"
+                    required
                   />
                 </div>
-                <div class="login-button-wrapper">
+                <div class="login-button-wrapper mt-4">
                   <div
                     class="flex-wrapper d-flex justify-content-start align-items-center"
                   >
-                    <button type="submit" class="login-btn">Log in</button>
+                    <button type="submit" class="login-btn border-0 text-white">
+                      <span>Log in</span>
+                    </button>
                     <div class="register-now-account">
                       <h5>Don’t Have any account?</h5>
                       <a href="#">Register Now</a>
@@ -195,7 +202,9 @@
             <!-- Login info End -->
             <div class="footer_wrapper text-right">
               <!-- <img src="images/logo.png" alt="Logo" /> -->
-              <p>Copyright © 2021 Tezpayments. All rights reserved.</p>
+              <p class="m-0">
+                Copyright © 2021 Tezpayments. All rights reserved.
+              </p>
             </div>
           </div>
         </div>
