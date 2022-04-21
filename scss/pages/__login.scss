@@ -12,7 +12,7 @@
             margin-left: 35px;
           }
           a {
-            font: 400 clamp(0.8rem, 1.2vw, 1.12rem) 'Open Sans', sans-serif;
+            font: 400 clamp(1.4rem, 1.2vw, 1.5rem) 'Open Sans', sans-serif;
             &:hover {
               text-decoration: none !important;
             }
@@ -43,6 +43,9 @@
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
+          }
+          i {
+            font-size: 1.6rem;
           }
         }
       }
@@ -76,7 +79,7 @@
             }
 
             a {
-              font: 700 clamp(0.8rem, 1vw, 1.25rem) 'Open Sans', sans-serif;
+              font: 700 clamp(1.2rem, 1vw, 1.4rem) 'Open Sans', sans-serif;
               color: #000000;
 
               &:hover {
@@ -98,15 +101,16 @@
 
       .login_info {
         h3 {
-          font: 800 clamp(2.125rem, 2vw, 2.5rem) 'Open Sans', sans-serif;
+          font: 800 clamp(2.8rem, 2vw, 4.5rem) 'Open Sans', sans-serif;
           margin-bottom: 0;
         }
         p {
-          font: 400 clamp(1rem, 1vw, 1.131rem) 'Open Sans', sans-serif;
+          font: 400 clamp(1.2rem, 1vw, 1.6rem) 'Open Sans', sans-serif;
         }
         .input-wrapper {
+          margin-top: 25px;
           .input-group {
-            height: clamp(3rem, 3.5vw, 60px);
+            height: clamp(5rem, 3.5vw, 60px);
 
             .over-ico {
               z-index: 11;
@@ -133,18 +137,18 @@
                 border: 0;
               }
               &::placeholder {
-                font: 400 clamp(1rem, 1.5vw, 16px) 'Open Sans', sans-serif;
+                font: 400 clamp(1.2rem, 1.5vw, 16px) 'Open Sans', sans-serif;
                 color: #f45821;
               }
             }
           }
           .login-button-wrapper {
             .login-btn {
-              width: clamp(5rem, 8vw, 8.438rem);
+              width: clamp(7rem, 6vw, 9.438rem);
               // height: clamp(2rem, 3.5vw, 4.5rem);
-              padding: clamp(9px, 1vw, 15px);
+              padding: clamp(10px, 1vw, 15px);
               background: #390bbe;
-              font: 800 clamp(1rem, 1.3vw, 1.62rem) 'Open Sans', sans-serif;
+              font: 800 clamp(1.2rem, 1.3vw, 1.62rem) 'Open Sans', sans-serif;
               border-radius: 8px;
               outline: none;
               span {
@@ -154,12 +158,12 @@
             .register-now-account {
               margin-left: 35px;
               h5 {
-                font: 400 clamp(0.8rem, 1.2vw, 1.313rem) 'Open Sans', sans-serif;
+                font: 400 clamp(1.2rem, 1.2vw, 1.313rem) 'Open Sans', sans-serif;
                 color: #000;
                 margin: 0 !important;
               }
               a {
-                font: 600 clamp(1.3rem, 1.5vw, 2.5rem) 'Open Sans', sans-serif;
+                font: 600 clamp(1.8rem, 1.5vw, 2.5rem) 'Open Sans', sans-serif;
                 color: #000;
                 margin: 0 !important;
               }
@@ -204,7 +208,7 @@
       }
       .footer_wrapper {
         p {
-          font: 800 clamp(0.7rem, 0.8vw, 1rem) 'Open Sans', sans-serif;
+          font: 800 clamp(1.2rem, 0.8vw, 1.6rem) 'Open Sans', sans-serif;
           color: #616060;
         }
       }

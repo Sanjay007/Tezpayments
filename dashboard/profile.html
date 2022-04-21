@@ -40,9 +40,6 @@
       .sidenav .collapse .nav-item .nav-link.active i {
         color: #f55621 !important;
       }
-      .navbar-vertical.navbar-expand-xs {
-        max-width: 16.625rem !important;
-      }
     </style>
   </head>
 
@@ -59,9 +56,10 @@
           class="fas fa-times p-3 cursor-pointer text-dark opacity-5 position-absolute end-0 top-0 d-none d-xl-none"
           aria-hidden="true"
           id="iconSidenav"
-          style="z-index: 33"
+          style="z-index: 33; font-size: 1.6rem"
         ></i>
-        <a class="navbar-brand m-0" href="#">
+
+        <a class="navbar-brand m-0" href="#" target="_blank">
           <span class="ms-1 font-weight-bold text-center">
             <img src="../images/logo.png" alt="" />
           </span>
@@ -74,7 +72,7 @@
       >
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link text-white" href="index.html">
+            <a class="nav-link text-dark" href="index.html">
               <div
                 class="text-dark text-center me-2 d-flex align-items-center justify-content-center"
               >
@@ -84,7 +82,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-white active" href="profile.html">
+            <a class="nav-link active" href="profile.html">
               <div
                 class="text-dark text-center me-2 d-flex align-items-center justify-content-center"
               >
@@ -183,13 +181,15 @@
                 </a>
               </li>
               <li>
-                <h6 class="font-weight-bolder mb-0 ps-3 title-header">
+                <h6
+                  class="font-weight-bolder mb-0 ps-3 title-header dashboard-title"
+                >
                   Dashboard
                 </h6>
               </li>
               <li></li>
             </ul>
-            <div class="ps-3 d-flex align-items-center search-filed">
+            <div class="ps-5 d-flex align-items-center search-filed">
               <div class="input-group border-radius-xl position-relative">
                 <i
                   class="material-icons opacity-10 search-icon position-absolute"
@@ -204,7 +204,10 @@
             class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4 d-flex align-items-center"
             id="navbar"
           >
-            <ul class="navbar-nav ml-auto" style="margin-left: auto">
+            <ul
+              class="navbar-nav ml-auto right-sidepart-header"
+              style="margin-left: auto"
+            >
               <li
                 class="nav-item dropdown pe-2 d-flex align-items-center notification-icon"
               >
@@ -225,11 +228,15 @@
                 <div
                   class="flex_wrapper d-flex justify-content-start align-items-center"
                 >
-                  <div class="user-avtar">
-                    <img src="../images/icons/avtar.png" alt="" />
+                  <div class="user-avtar rounded-circle">
+                    <img
+                      src="../images/icons/avtar.png"
+                      class="img-fluid"
+                      alt=""
+                    />
                   </div>
                   <div class="user-details">
-                    <h2>Nilanjan Dutta</h2>
+                    <h2 class="mb-0">Nilanjan Dutta</h2>
                     <h5>ndnilanjandutta1@gmail.com</h5>
                   </div>
                 </div>
@@ -309,34 +316,35 @@
                     </a>
                   </li>
                   <!-- Your Profile -->
-                  <li class="mb-2">
+                  <li
+                    class="mb-2 flex_wrapper d-flex justify-content-between align-items-center"
+                  >
                     <a
                       class="dropdown-item border-radius-md"
                       href="javascript:;"
                     >
-                      <div
-                        class="flex_wrapper d-flex justify-content-between align-items-center"
-                      >
-                        <div class="wallet-options">
-                          <div class="inner-flex d-flex align-items-center">
-                            <div class="wallet-icon">
-                              <img
-                                src="../images/icons/profile-icon.png"
-                                alt=""
-                              />
-                            </div>
-                            <div class="wallet-name">
-                              <span>Your</span>
-                              <h4>Profile</h4>
-                            </div>
+                      <div class="wallet-options">
+                        <div class="inner-flex d-flex align-items-center">
+                          <div class="wallet-icon">
+                            <img
+                              src="../images/icons/profile-icon.png"
+                              alt=""
+                            />
+                          </div>
+                          <div class="wallet-name">
+                            <span>Your</span>
+                            <h4>Profile</h4>
                           </div>
                         </div>
-                        <a href="#" class="sign-out">
-                          <img src="../images/icons/sign-out.png" alt="" /> Sign
-                          Out</a
-                        >
                       </div>
                     </a>
+                    <a
+                      class="dropdown-item sign-out d-flex justify-content-end"
+                      href="javascript:;"
+                    >
+                      <img src="../images/icons/sign-out.png" alt="" /> Sign
+                      Out</a
+                    >
                   </li>
                 </ul>
               </li>
@@ -346,7 +354,7 @@
       </nav>
       <!-- End Navbar -->
       <!-- Main Content Pannel Start -->
-      <div class="container-fluid py-4">
+      <div class="container-fluid py-4 portfolio-page">
         <div class="row">
           <div class="col-12">
             <div
@@ -359,8 +367,8 @@
               "
             >
               <div class="profolio-wrapper">
-                <div class="row no-gutters">
-                  <div class="col-md-4 mb-4">
+                <ul class="m-0 p-0 d-flex">
+                  <li>
                     <div
                       class="profolio-cards bg-white border-radius-lg d-flex justify-content-between align-items-start"
                     >
@@ -369,13 +377,13 @@
                         <h3>Rs. 14588.00</h3>
                       </div>
                       <div
-                        class="icon-circle d-flex justify-content-center align-items-center"
+                        class="icon-circle text-white rounded-circle d-flex justify-content-center align-items-center"
                       >
                         <i class="material-icons opacity-10">currency_rupee</i>
                       </div>
                     </div>
-                  </div>
-                  <div class="col-md-4 mb-4">
+                  </li>
+                  <li>
                     <div
                       class="profolio-cards bg-white border-radius-lg d-flex justify-content-between align-items-start"
                     >
@@ -384,14 +392,14 @@
                         <h3>Rs. 14588.00</h3>
                       </div>
                       <div
-                        class="icon-circle d-flex justify-content-center align-items-center"
+                        class="icon-circle text-white rounded-circle d-flex justify-content-center align-items-center"
                         style="background: #ffc805"
                       >
                         <i class="material-icons opacity-10">currency_rupee</i>
                       </div>
                     </div>
-                  </div>
-                  <div class="col-md-4 mb-4">
+                  </li>
+                  <li>
                     <div
                       class="profolio-cards bg-white border-radius-lg d-flex justify-content-between align-items-start"
                     >
@@ -400,13 +408,13 @@
                         <h3>Rs. 14588.00</h3>
                       </div>
                       <div
-                        class="icon-circle d-flex justify-content-center align-items-center"
+                        class="icon-circle text-white rounded-circle d-flex justify-content-center align-items-center"
                       >
                         <i class="material-icons opacity-10">currency_rupee</i>
                       </div>
                     </div>
-                  </div>
-                  <div class="col-md-4 mb-4">
+                  </li>
+                  <li>
                     <div
                       class="profolio-cards bg-white border-radius-lg d-flex justify-content-between align-items-start"
                     >
@@ -415,13 +423,13 @@
                         <h3>1473</h3>
                       </div>
                       <div
-                        class="icon-circle d-flex justify-content-center align-items-center"
+                        class="icon-circle text-white rounded-circle d-flex justify-content-center align-items-center"
                       >
                         <i class="material-icons opacity-10">currency_rupee</i>
                       </div>
                     </div>
-                  </div>
-                </div>
+                  </li>
+                </ul>
               </div>
               <!-- All Transaction  -->
               <div class="tabchanging-wrapper px-3">
@@ -589,6 +597,16 @@
         </div>
         <!-- Main Content Pannel Start -->
       </div>
+      <!-- Footer Start -->
+      <footer
+        class="footer py-4 border-radius-lg text-center"
+        style="border-top-left-radius: 0; border-top-right-radius: 0"
+      >
+        <div class="container-fluid text-white">
+          <p>Copyright © 2021 Tezpayments. All rights reserved.</p>
+        </div>
+      </footer>
+      <!-- Footer End -->
     </main>
 
     <!--   Core JS Files   -->
@@ -619,12 +637,15 @@
     <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
     <script src="../assets/js/material-dashboard.min.js?v=3.0.2"></script>
     <script>
-      $(document).ready(function () {
-        $('#iconSidenav').on('click', function () {
-          alert('asfsaf');
-        });
+      var mainContent = document.querySelector('.main-content');
+      var sidenavMain = document.querySelector('#sidenav-main');
+      var humb = document.getElementById('iconNavbarSidenav');
+      humb.addEventListener('click', function () {
+        mainContent.classList.toggle('addtoggleMainContent');
+        sidenavMain.classList.toggle('hideshowsidebar');
       });
     </script>
+
     <script>
       // Define variables
       var tabLabels = document.querySelectorAll('#tabs li');

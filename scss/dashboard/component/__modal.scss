@@ -1,0 +1,60 @@
+.modal-services {
+  width: 100%;
+  border-radius: 6px;
+  padding-top: 30px;
+
+  .header-content {
+    padding: 15px 0;
+    h4,
+    span {
+      font-size: 1.4rem;
+      color: #000;
+      font-weight: 600;
+      margin: 0;
+    }
+    .powered-by {
+      img {
+        max-width: 150px;
+        margin-left: 20px;
+      }
+    }
+  }
+  .main-content {
+    padding: 30px 0 10px 0;
+
+    label {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: #000;
+    }
+    input {
+      border: 1px solid #ccc;
+      height: 35px;
+      font-size: 1.4rem;
+      padding-left: 0.5rem;
+    }
+    .btn {
+      background: #f55621 !important;
+      margin-top: 2rem;
+      display: inline-block;
+      padding: 1rem 2rem;
+      font-size: 1.2rem;
+      color: #fff;
+      font-weight: 700;
+    }
+  }
+}
+@media screen and (max-width: 560px) {
+  .modal-services .main-content {
+    padding-top: 15px;
+  }
+  .modal-services .main-content .form-group {
+    margin-top: 8px;
+  }
+  .powered-by {
+    margin-top: 1.5rem;
+  }
+  .modal-services .header-content .powered-by img {
+    max-width: 75px;
+  }
+}

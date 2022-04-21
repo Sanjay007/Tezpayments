@@ -16,7 +16,7 @@ var services = [
   (rechargeandbpps = [
     {
       s_img: '../images/icons/mobile-recharge.png',
-      name: 'Mobile Recharge',
+      name: 'Mobile  Recharge',
     },
     {
       s_img: '../images/icons/dh2-recharge.png',
