@@ -27,11 +27,12 @@
       font-weight: 700;
       color: #000;
     }
-    input {
+    input, select {
       border: 1px solid #ccc;
       height: 35px;
       font-size: 1.4rem;
       padding-left: 0.5rem;
+      margin-bottom: 15px;
     }
     .btn {
       background: #f55621 !important;
