@@ -289,21 +289,46 @@
                     </div>
 
                     <div class="main-content">
-                      <form action="#" class="row">
+                      <form onsubmit="formSubmit(event)" action="#" class="row">
                         <div class="row">
                           <div class="form-group col-md-4" id="billerRoot">
                             <label>Biller</label>
-                            <select required onchange="billerRootSelected(this)" class="form-control"></select>
-                          </div>
-                          <div class="form-group col-md-4 d-none" id="mobileBillerRootType">
-                            <label>Biller Type</label>
-                            <select required onchange="billerRootTypeSelected(this)" class="form-control"></select>
+                            <select
+                              name="billerRoot"
+                              required
+                              onchange="billerRootSelected(this)"
+                              class="form-control"
+                            ></select>
                           </div>
                         </div>
+                        <div class="row d-none mb-5" id="mobileRechargeCol">
+                          <div class="form-group col-md-4" id="mobileBillerRootType">
+                            <label>Biller Type</label>
+                            <select
+                              name="mobileBillerRootType"
+                              onchange="billerRootTypeSelected(this)"
+                              class="form-control"
+                            ></select>
+                          </div>
+                          <div class="form-group col-md-4" id="mobileRechargePlans">
+                            <label>Plan Type</label>
+                            <select name="mobileRechargePlans" class="form-control"></select>
+                          </div>
+                          <div class="form-group col-md-4" id="mobileRechargeCircle">
+                            <label>Circle</label>
+                            <select name="mobileRechargeCircle" class="form-control"></select>
+                          </div>
+                          <div class="form-group col-md-4">
+                            <a class="btn" href="#" onclick="fetchplans()">Fetch Plans</a>
+                          </div>
+                        </div>
+                        <div class="row d-none mb-5" id="plansList"></div>
                         <div id="fields" class="row"></div>
                         <div class="row">
                           <div class="col-md-12 border-top mt-5">
-                            <button type="submit" name="submit" class="border-0 btn">Submit</button>
+                            <button id="bbps-submit-btn" type="submit" name="submit" class="border-0 btn">
+                              Fetch Bill
+                            </button>
                           </div>
                         </div>
                       </form>
@@ -350,7 +375,6 @@
     <!--   Core JS Files   -->
 
     <script src="../assets/js/core/bootstrap.min.js"></script>
-
     <script
       src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
       integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
@@ -364,6 +388,10 @@
 
     <script src="../assets/js/plugins/perfect-scrollbar.min.js"></script>
     <script src="../assets/js/plugins/smooth-scrollbar.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/hmac-sha256.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/enc-base64.min.js"></script>
 
     <script>
       var win = navigator.platform.indexOf("Win") > -1;
@@ -431,6 +459,20 @@
               </li>
           `;
         });
+
+        let html = "";
+        for (var i = 0; i < mobileRechargeCircles.length; i++) {
+          let item = mobileRechargeCircles[i];
+          html += `<option value="${item.cId}">${item.state}</option>`;
+        }
+        document.querySelector("#mobileRechargeCircle select").innerHTML = html;
+
+        html = "";
+        for (var i = 0; i < mobileRechargePlans.length; i++) {
+          let item = mobileRechargePlans[i];
+          html += `<option value="${item.pId}">${item.planName}</option>`;
+        }
+        document.querySelector("#mobileRechargePlans select").innerHTML = html;
       });
     </script>
 
@@ -439,8 +481,11 @@
       let services,
         service_id,
         billerRootIndex,
-        billerRootTypeIndex = "0";
+        billerRootTypeIndex = "0",
+        rechargePlans = [],
+        selectedPlanIndex;
     </script>
+    <!-- Setup form -->
     <script>
       async function setBillerRoot(service) {
         let html = "<option value selected disabled>Select Provider</option>";
@@ -449,31 +494,30 @@
           html += `<option value="${i}">${item.name}</option>`;
         }
         document.querySelector("#billerRoot select").innerHTML = html;
+        if (service_id === "mobile") document.querySelector("#bbps-submit-btn").innerHTML = "Recharge";
       }
-
       async function billerRootSelected() {
         let value = document.querySelector("#billerRoot select").value;
         billerRootIndex = value;
         if (service_id === "mobile") {
-          let html = "<option value selected disabled>Select Type</option>";
+          let html = "";
           let items = services.billerRoot[value].billers;
           for (var i = 0; i < items.length; i++) {
             let item = items[i];
             html += `<option value="${i}">${item.type}</option>`;
           }
           document.querySelector("#mobileBillerRootType select").innerHTML = html;
-          document.querySelector("#mobileBillerRootType").classList.remove("d-none");
-        } else setFields();
+          document.querySelector("#mobileRechargeCol").classList.remove("d-none");
+        }
+        setFields();
         return true;
       }
-
       async function billerRootTypeSelected() {
         let value = document.querySelector("#mobileBillerRootType select").value;
         billerRootTypeIndex = value;
         setFields();
         return true;
       }
-
       async function setFields() {
         let fieldItems = services.billerRoot[billerRootIndex].billers[billerRootTypeIndex].fields;
         let html = "";
@@ -482,7 +526,8 @@
           html += `
           <div class="form-group col-md-4">
             <label for="${item.id}">${item.name}</label>
-            <input 
+            <input
+              name="${item.id}" 
               max="${item.max}"
               min="${item.min}"
               type="${item.isnumeric ? "number" : "text"}" 
@@ -497,19 +542,22 @@
         }
         document.querySelector("#fields").innerHTML = html;
       }
-
       async function getService(id) {
         try {
+          document.querySelector(".modal-services").classList.add("d-none");
+          document.querySelector("#mobileRechargeCol").classList.add("d-none");
+          document.querySelector("#fields").innerHTML = "";
+          document.querySelector("#plansList").innerHTML = "";
+          document.querySelector("#plansList").classList.add("d-none");
+          document.querySelector("#bbps-submit-btn").innerHTML = "Fetch Bill";
+          billerRootIndex = 0;
+          billerRootTypeIndex = 0;
+          document.querySelector("#mobileBillerRootType select").value = "";
+          document.querySelector("#billerRoot select").value = "";
+
           // let response = await fetch("https://static.mobikwik.com/appdata/billerConfig_v4.json?v=1649318136");
           // response = await response.json();
           // let index = response.category.findIndex((x) => x.categoryId == id);
-          document.querySelector(".modal-services").classList.add("d-none");
-          document.querySelector("#mobileBillerRootType").classList.add("d-none");
-          document.querySelector("#fields").innerHTML = "";
-          billerRootIndex = 0;
-          billerRootTypeIndex = "0";
-          document.querySelector("#mobileBillerRootType select").value = "";
-          document.querySelector("#billerRoot select").value = "";
 
           let index = categories.findIndex((x) => x.categoryId == id);
           if (index > -1) {
@@ -522,7 +570,217 @@
           } else {
             alert("Invalid Service");
           }
-        } catch (error) {}
+        } catch (error) {
+          alert(error.message);
+        }
+      }
+    </script>
+    <!-- Mobile Recharge Extra Functions -->
+    <script>
+      async function fetchplans() {
+        try {
+          let circle = document.querySelector("#mobileRechargeCircle select").value;
+          let plan = document.querySelector("#mobileRechargePlans select").value;
+          let operator = document.querySelector("#mobileBillerRootType select").value;
+          if (!plan) alert("Please select plan");
+          else if (!circle) alert("Please select circle");
+          else if (!operator) alert("Please select type");
+          else {
+            operator = services.billerRoot[billerRootIndex].billers[billerRootTypeIndex].op;
+            // let response = await fetch(
+            //   `https://alpha3.mobikwik.com/recharge/v1/rechargePlansAPI/${operator}/${circle}/${plan}`
+            // );
+            // response = await response.json();
+
+            let response = {
+              success: true,
+              data: {
+                plans: [
+                  {
+                    id: "1028995",
+                    operatorId: 1,
+                    circleId: 19,
+                    planType: 17,
+                    planCode: "airtel-Rajasthan-local-plans-Rs-19.0",
+                    amount: 19.0,
+                    talktime: 0.0,
+                    validity: "2 days",
+                    planName: "Voice + 4G Data",
+                    planDescription:
+                      "Enjoy TRULY unlimited Local, STD & Roaming calls on  any network, 200 MB data for 2 days ",
+                    dataBenefit: "200 MB",
+                    isPopular: 0,
+                    isPromoted: 0,
+                    isHidden: 0,
+                    stringTalktime: null,
+                    special: true,
+                    validityInDays: 2,
+                    languageRegion: [""],
+                    type: [""],
+                    planTypeForWeb: 17,
+                    planDetailItemList: [
+                      {
+                        key: "talktime",
+                        displayName: "Talktime",
+                        displayValue: "-",
+                      },
+                      {
+                        key: "validity",
+                        displayName: "Validity",
+                        displayValue: "2 days",
+                      },
+                      {
+                        key: "data",
+                        displayName: "Data",
+                        displayValue: "200 MB",
+                      },
+                    ],
+                    planTypeList: [1, 17],
+                  },
+                ],
+              },
+            };
+
+            if (response.success) {
+              rechargePlans = response?.data?.plans;
+
+              let html = "";
+              for (var i = 0; i < rechargePlans.length; i++) {
+                let item = rechargePlans[i];
+                html += `
+                <div class="col-md-4">
+                  <div class="card">
+                    <div class="card-body">
+                      <h5 class="card-title">${item.planName}</h5>
+                      <p class="card-text">${item.planDescription}</p>
+                      <p class="card-text">Amount - ${item.amount}</p>
+                      ${item.planDetailItemList
+                        .map((tt) => {
+                          return `<p class="card-text">${tt.displayName} :  ${tt.displayValue}</p>`;
+                        })
+                        .join("")}
+                      <a onclick="selectRechargePlan('${i}')" href="#" class="btn btn-primary btn">Select</a>
+                    </div>
+                  </div>
+                </div>
+                `;
+              }
+              document.querySelector("#plansList").innerHTML = html;
+              document.querySelector("#plansList").classList.remove("d-none");
+            } else alert(response?.message?.text);
+          }
+        } catch (error) {
+          alert(error.message);
+        }
+      }
+      async function selectRechargePlan(index) {
+        selectedPlanIndex = index;
+        document.querySelector("input#amt").value = parseInt(rechargePlans[index].amount);
+      }
+    </script>
+    <!-- Form Submit -->
+    <script>
+      // sort object alphabetically
+      function sortObjectByKeys(o) {
+        return Object.keys(o)
+          .sort()
+          .reduce((r, k) => ((r[k] = o[k]), r), {});
+      }
+
+      async function doRecharge() {
+        let operator = services.billerRoot[billerRootIndex].billers[billerRootTypeIndex].op;
+        let cn = document.querySelector("input#cn").value;
+        let circle = document.querySelector("#mobileRechargeCircle select").value;
+        let amt = document.querySelector("input#amt").value;
+
+        let body = {
+          amt: String(amt),
+          cir: String(circle),
+          cn: cn,
+          op: String(operator),
+          pwd: "testalpha1@123",
+          reqid: "10035403539",
+          uid: "testalpha1@gmail.com",
+        };
+
+        body = sortObjectByKeys(body);
+        const queryParams = new URLSearchParams(body).toString();
+        let url = "https://alpha3.mobikwik.com/recharge.do?" + queryParams;
+
+        try {
+          let hash = CryptoJS.HmacSHA256(JSON.stringify(body), "abcd@123");
+          let hashInBase64 = CryptoJS.enc.Base64.stringify(hash);
+
+          let options = {
+            method: "GET",
+            headers: {
+              checkSum: hashInBase64,
+            },
+          };
+
+          let response = await fetch(url, options);
+          response = await response.json();
+          console.log(response);
+        } catch (error) {
+          alert(error.message);
+        }
+      }
+
+      async function fetchBill(body) {
+        let options = {
+          method: "POST",
+          body: JSON.stringify(body),
+          headers: {
+            "Content-Type": "application/json",
+            "X-MClient": 14,
+          },
+        };
+        try {
+          let response = await fetch("https://alpha3.mobikwik.com/retailer/v2/viewbill", options);
+          response = await response.json();
+          console.log(response);
+        } catch (error) {
+          alert(error.message);
+        }
+      }
+      async function payBill() {}
+      async function formSubmit(e) {
+        e.preventDefault();
+        let body = {};
+        let operator = services.billerRoot[billerRootIndex].billers[billerRootTypeIndex].op;
+        let cn = document.querySelector("input#cn").value;
+        let emailId = document.querySelector("input#emailId").value;
+
+        if (service_id === "mobile") doRecharge();
+        else if (service_id === "Education") {
+          body = {
+            adParams: {
+              instituteName: "EDU001915BIH01",
+              "Mobile Number of Parent": "8182913888",
+              "DOB Of Student": "18071997",
+              viewBill: "true",
+            },
+            cir: "",
+            cn: cn,
+            op: operator,
+          };
+          fetchBill(body);
+        } else if (service_id === "insurance" && Number(op) === 525) {
+          body = {
+            adParams: { emailId: emailId },
+            cir: "",
+            cn: cn,
+            op: operator,
+          };
+          fetchBill(body);
+        } else {
+          body = {
+            adParams: {},
+            cn: cn,
+            op: operator,
+          };
+          fetchBill(body);
+        }
       }
     </script>
   </body>
