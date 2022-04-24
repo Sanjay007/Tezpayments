@@ -331,6 +331,7 @@
                             </button>
                           </div>
                         </div>
+                        <div class="row d-none mb-5 mt-5" id="billList"></div>
                       </form>
                     </div>
                   </div>
@@ -483,7 +484,8 @@
         billerRootIndex,
         billerRootTypeIndex = "0",
         rechargePlans = [],
-        selectedPlanIndex;
+        selectedPlanIndex,
+        bills = [];
     </script>
     <!-- Setup form -->
     <script>
@@ -544,12 +546,21 @@
       }
       async function getService(id) {
         try {
-          document.querySelector(".modal-services").classList.add("d-none");
-          document.querySelector("#mobileRechargeCol").classList.add("d-none");
+          document.querySelector(".services-name-dy h4").innerHTML = "";
+          document.querySelector("#billerRoot select").innerHTML = "";
+          document.querySelector("#mobileBillerRootType select").innerHTML = "";
           document.querySelector("#fields").innerHTML = "";
+          document.querySelector("#bbps-submit-btn").innerHTML = "Fetch Bill";
+
           document.querySelector("#plansList").innerHTML = "";
           document.querySelector("#plansList").classList.add("d-none");
-          document.querySelector("#bbps-submit-btn").innerHTML = "Fetch Bill";
+
+          document.querySelector("#billList").innerHTML = "";
+          document.querySelector("#billList").classList.add("d-none");
+
+          document.querySelector(".modal-services").classList.add("d-none");
+          document.querySelector("#mobileRechargeCol").classList.add("d-none");
+
           billerRootIndex = 0;
           billerRootTypeIndex = 0;
           document.querySelector("#mobileBillerRootType select").value = "";
@@ -739,11 +750,35 @@
           let response = await fetch("https://alpha3.mobikwik.com/retailer/v2/viewbill", options);
           response = await response.json();
           console.log(response);
+          if (response.success) {
+            let bills = response.data;
+            let html = "";
+            for (var i = 0; i < bills.length; i++) {
+              let bill = bills[i];
+              html += `
+              <div class="col-md-4">
+                <div class="card">
+                  <div class="card-body">
+                    <h6 class="card-title">Bill Number - ${bill.billNumber}</h6>
+                    <h6 class="card-title">Bill Amount - ${bill.billAmount}</h6>
+                    <h6 class="card-title">Phone Number - ${bill.cellNumber}</h6>
+                    <h6 class="card-title">Due Date - ${bill.dueDate}</h6>
+                    <a onclick="payBill('${i}')" href="#" class="btn btn-primary btn">Pay Bill</a>
+                  </div>
+                </div>
+              </div>
+              `;
+            }
+            document.querySelector("#billList").innerHTML = html;
+            document.querySelector("#billList").classList.remove("d-none");
+          } else alert(response.message.text);
         } catch (error) {
           alert(error.message);
         }
       }
-      async function payBill() {}
+      async function payBill(index) {
+        let bill = bills[index];
+      }
       async function formSubmit(e) {
         e.preventDefault();
         let body = {};
