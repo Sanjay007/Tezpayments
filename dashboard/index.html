@@ -501,7 +501,7 @@
     <!-- Setup form -->
     <script>
       async function setBillerRoot(service) {
-        let html = "";
+        let html = "<option value selected disabled>Select Biller</option>";
         for (var i = 0; i < service.billerRoot.length; i++) {
           let item = service.billerRoot[i];
           html += `<option value="${i}">${item.name}</option>`;
@@ -574,6 +574,10 @@
           document.querySelector("#mobileRechargeCol").classList.add("d-none");
 
           document.querySelector("#educationList").classList.add("d-none");
+          document.querySelector("#billerRoot").classList.remove("d-none");
+          document.querySelector("#statesList select").innerHTML = "";
+          document.querySelector("#citiesList select").innerHTML = "";
+          document.querySelector("#schoolsList select").innerHTML = "";
 
           billerRootIndex = 0;
           billerRootTypeIndex = 0;
@@ -623,10 +627,10 @@
             if (serviceId === "dth") url = `https://rapi.mobikwik.com/recharge/v1/rechargePlansAPI/${operator}`;
             else url = `https://rapi.mobikwik.com/recharge/v1/rechargePlansAPI/${operator}/${circle}`;
 
-            let response = await fetch(url);
-            response = await response.json();
+            // let response = await fetch(url);
+            // response = await response.json();
 
-            response = {
+            let response = {
               success: true,
               data: {
                 plans: [
