@@ -293,12 +293,7 @@
                         <div class="row">
                           <div class="form-group col-md-4" id="billerRoot">
                             <label>Biller</label>
-                            <select
-                              name="billerRoot"
-                              required
-                              onchange="billerRootSelected(this)"
-                              class="form-control"
-                            ></select>
+                            <select name="billerRoot" onchange="billerRootSelected(this)" class="form-control"></select>
                           </div>
                         </div>
                         <div class="row d-none mb-5" id="mobileRechargeCol">
@@ -323,6 +318,21 @@
                           </div>
                         </div>
                         <div class="row d-none mb-5" id="plansList"></div>
+                        <div class="row d-none mb-5 mt-5" id="billList"></div>
+                        <div class="row d-none mb-5 mt-5" id="educationList">
+                          <div class="col-md-4" id="statesList">
+                            <label>Select State</label>
+                            <select onchange="stateSelected()" name="statesList" class="form-control"></select>
+                          </div>
+                          <div class="col-md-4" id="citiesList">
+                            <label>Select City</label>
+                            <select onchange="citySelected()" name="citiesList" class="form-control"></select>
+                          </div>
+                          <div class="col-md-4" id="schoolsList">
+                            <label>Select School</label>
+                            <select onchange="schoolSelected()" name="schoolsList" class="form-control"></select>
+                          </div>
+                        </div>
                         <div id="fields" class="row"></div>
                         <div class="row">
                           <div class="col-md-12 border-top mt-5">
@@ -331,7 +341,6 @@
                             </button>
                           </div>
                         </div>
-                        <div class="row d-none mb-5 mt-5" id="billList"></div>
                       </form>
                     </div>
                   </div>
@@ -413,6 +422,7 @@
       crossorigin="anonymous"
     ></script>
     <script src="../assets/js/dataJSON.js"></script>
+    <script src="../assets/js/education.js"></script>
     <script>
       var searchicon = document.getElementById("searchicon");
       var searchinput = document.getElementById("searchinput");
@@ -436,6 +446,7 @@
 
     <script>
       $(document).ready(function () {
+        console.log(education, states);
         $.each(banking, function (key, val) {
           document.querySelector("#services-wrapper").innerHTML += `    
           <li class="text-center">
@@ -490,7 +501,7 @@
     <!-- Setup form -->
     <script>
       async function setBillerRoot(service) {
-        let html = "<option value selected disabled>Select Provider</option>";
+        let html = "";
         for (var i = 0; i < service.billerRoot.length; i++) {
           let item = service.billerRoot[i];
           html += `<option value="${i}">${item.name}</option>`;
@@ -511,6 +522,7 @@
           document.querySelector("#mobileBillerRootType select").innerHTML = html;
           document.querySelector("#mobileRechargeCol").classList.remove("d-none");
         }
+        if (service_id === "dth") fetchplans("dth");
         setFields();
         return true;
       }
@@ -561,6 +573,8 @@
           document.querySelector(".modal-services").classList.add("d-none");
           document.querySelector("#mobileRechargeCol").classList.add("d-none");
 
+          document.querySelector("#educationList").classList.add("d-none");
+
           billerRootIndex = 0;
           billerRootTypeIndex = 0;
           document.querySelector("#mobileBillerRootType select").value = "";
@@ -574,10 +588,12 @@
           if (index > -1) {
             document.querySelector(".modal-services").classList.remove("d-none");
             service_id = id;
+
             // services = response.category[index];
             services = categories[index];
             document.querySelector(".services-name-dy h4").innerHTML = services.name + " payment";
-            setBillerRoot(services);
+            if (service_id === "Education") createEducationRoot();
+            else setBillerRoot(services);
           } else {
             alert("Invalid Service");
           }
@@ -588,17 +604,26 @@
     </script>
     <!-- Mobile Recharge Extra Functions -->
     <script>
-      async function fetchplans() {
+      async function fetchplans(serviceId) {
         try {
+          let url, operator;
           let circle = document.querySelector("#mobileRechargeCircle select").value;
           let plan = document.querySelector("#mobileRechargePlans select").value;
-          let operator = document.querySelector("#mobileBillerRootType select").value;
-          if (!plan) alert("Please select plan");
-          else if (!circle) alert("Please select circle");
-          else if (!operator) alert("Please select type");
+
+          if (serviceId === "dth") operator = document.querySelector("#billerRoot select").value;
+          else operator = document.querySelector("#mobileBillerRootType select").value;
+
+          // if (!plan) alert("Please select plan");
+          // else if (!circle) alert("Please select circle");
+
+          if (!operator) alert("Please select type");
           else {
             operator = services.billerRoot[billerRootIndex].billers[billerRootTypeIndex].op;
-            let response = await fetch(`https://rapi.mobikwik.com/recharge/v1/rechargePlansAPI/${operator}/${circle}`);
+
+            if (serviceId === "dth") url = `https://rapi.mobikwik.com/recharge/v1/rechargePlansAPI/${operator}`;
+            else url = `https://rapi.mobikwik.com/recharge/v1/rechargePlansAPI/${operator}/${circle}`;
+
+            let response = await fetch(url);
             response = await response.json();
 
             response = {
@@ -685,6 +710,43 @@
       async function selectRechargePlan(index) {
         selectedPlanIndex = index;
         document.querySelector("input#amt").value = parseInt(rechargePlans[index].amount);
+      }
+    </script>
+    <!-- Education -->
+    <script>
+      let cities = [],
+        schools = [],
+        selectedStateIndex = 0,
+        selectedCityIndex = 0,
+        selectedSchoolIndex = 0;
+      async function createEducationRoot() {
+        let html = "";
+        for (var i = 0; i < states.length; i++) html += `<option value="${i}">${states[i].name}</option>`;
+        document.querySelector("#statesList select").innerHTML = html;
+        document.querySelector("#educationList").classList.remove("d-none");
+        document.querySelector("#billerRoot").classList.add("d-none");
+        stateSelected();
+      }
+      async function stateSelected() {
+        let index = document.querySelector("#statesList select").value;
+        selectedStateIndex = index ? index : 0;
+        cities = states[index].cities;
+        let html = "";
+        for (var i = 0; i < cities.length; i++) html += `<option value="${i}">${cities[i].name}</option>`;
+        document.querySelector("#citiesList select").innerHTML = html;
+        citySelected();
+      }
+      async function citySelected() {
+        let index = document.querySelector("#citiesList select").value;
+        selectedCityIndex = index ? index : 0;
+        schools = cities[index].schools;
+        let html = "";
+        for (var i = 0; i < schools.length; i++) html += `<option value="${i}">${schools[i].name}</option>`;
+        document.querySelector("#schoolsList select").innerHTML = html;
+      }
+      async function schoolSelected() {
+        let index = document.querySelector("#schoolsList select").value;
+        selectedSchoolIndex = index ? index : 0;
       }
     </script>
     <!-- Form Submit -->
