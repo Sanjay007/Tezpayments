@@ -310,7 +310,7 @@
                               class="form-control"
                             ></select>
                           </div>
-                          <div class="form-group col-md-4" id="mobileRechargePlans">
+                          <div class="form-group col-md-4 d-none" id="mobileRechargePlans">
                             <label>Plan Type</label>
                             <select name="mobileRechargePlans" class="form-control"></select>
                           </div>
@@ -598,12 +598,10 @@
           else if (!operator) alert("Please select type");
           else {
             operator = services.billerRoot[billerRootIndex].billers[billerRootTypeIndex].op;
-            // let response = await fetch(
-            //   `https://alpha3.mobikwik.com/recharge/v1/rechargePlansAPI/${operator}/${circle}/${plan}`
-            // );
-            // response = await response.json();
+            let response = await fetch(`https://rapi.mobikwik.com/recharge/v1/rechargePlansAPI/${operator}/${circle}`);
+            response = await response.json();
 
-            let response = {
+            response = {
               success: true,
               data: {
                 plans: [
@@ -747,8 +745,24 @@
           },
         };
         try {
-          let response = await fetch("https://alpha3.mobikwik.com/retailer/v2/viewbill", options);
-          response = await response.json();
+          // let response = await fetch("https://rapi.mobikwik.com/retailer/v2/viewbill", options);
+          // response = await response.json();
+          let response = {
+            success: true,
+            data: [
+              {
+                billNumber: "139177237",
+                billAmount: "50.0",
+                billnetamount: "50.0",
+                billdate: "25 Apr 2022",
+                dueDate: "25 Apr 2022",
+                statusMessage: "1",
+                acceptPayment: true,
+                acceptPartPay: false,
+                cellNumber: "9930149069",
+              },
+            ],
+          };
           console.log(response);
           if (response.success) {
             let bills = response.data;
@@ -784,7 +798,7 @@
         let body = {};
         let operator = services.billerRoot[billerRootIndex].billers[billerRootTypeIndex].op;
         let cn = document.querySelector("input#cn").value;
-        let emailId = document.querySelector("input#emailId").value;
+        let emailId = document.querySelector("input#emailId") && document.querySelector("input#emailId").value;
 
         if (service_id === "mobile") doRecharge();
         else if (service_id === "Education") {

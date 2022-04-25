@@ -16,7 +16,7 @@ var dataJSON = [
   (rechargeandbpps = [
     {
       s_img: "../images/icons/mobile-recharge.png",
-      name: "Mobile  Recharge",
+      name: "Mobile Recharge",
       id: "mobile",
     },
     {
@@ -65,18 +65,53 @@ var dataJSON = [
       id: "emipayments",
     },
     {
-      s_img: "../images/icons/loan.png",
+      s_img: "../images/icons/education.png",
       name: "Education",
       id: "Education",
     },
     {
-      s_img: "../images/icons/loan.png",
+      s_img: "../images/icons/insurance.png",
       name: "Insurance",
       id: "insurance",
     },
+
+    {
+      s_img: "../images/icons/data_card.png",
+      name: "Data Card",
+      id: "datacard",
+    },
+    {
+      s_img: "../images/icons/google_play.png",
+      name: "Google Play",
+      id: "googleplay",
+    },
+    {
+      s_img: "../images/icons/housing_society.png",
+      name: "Housing Society",
+      id: "housing",
+    },
+    {
+      s_img: "../images/icons/lpg_recharge.png",
+      name: "LPG Recharge",
+      id: "lpgBooking",
+    },
+    // {
+    //   s_img: "../images/icons/metro.png",
+    //   name: "Metro",
+    //   id: "insurance",
+    // },
+    {
+      s_img: "../images/icons/municipal_corpo_tax.png",
+      name: "Municipal Corporation Tax",
+      id: "muncipality",
+    },
+    {
+      s_img: "../images/icons/wifi_recharge.png",
+      name: "Wifi Recharge",
+      id: "wifi",
+    },
   ]),
   (mobileRechargeCircles = [
-    { cId: "0", state: "All Circles" },
     { cId: "1", state: "Andhra Pradesh" },
     { cId: "2", state: "Assam" },
     { cId: "3", state: "Bihar/Jharkhand" },
